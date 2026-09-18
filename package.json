@@ -1,0 +1,17 @@
+{
+  "name": "easyenglish-trainer",
+  "version": "1.0.0",
+  "description": "EasyEnglish — тренажёр английского языка с авторизацией и облачным прогрессом (Firebase Auth + Firestore).",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "firebase": "^11.0.2"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  }
+}

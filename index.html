@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyEnglish</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app">
+
+  <div class="auth-bar">
+    <div id="authGuestControls" class="auth-controls">
+      <button class="auth-btn" id="openLoginBtn">Войти</button>
+      <button class="auth-btn primary" id="openRegisterBtn">Регистрация</button>
+      <button class="theme-toggle-btn" id="themeToggleBtn" title="Переключить тему">🌓</button>
+    </div>
+    <div id="authUserControls" class="auth-controls hidden">
+      <span class="auth-user"><span class="auth-user-email" id="authUserEmail"></span></span>
+      <button class="auth-btn" id="logoutBtn">Выйти</button>
+      <button class="theme-toggle-btn" id="themeToggleBtnUser" title="Переключить тему" onclick="document.getElementById('themeToggleBtn').click()">🌓</button>
+    </div>
+  </div>
+
+  <div class="masthead">
+    <h1>EasyEnglish</h1>
+    <span class="tag" id="mastheadTag">100 вопросов</span>
+  </div>
+
+  <div id="cookieWarning" class="cookie-warning hidden">
+    ⚠️ В этом браузере отключено локальное хранилище — без входа в аккаунт прогресс не будет сохраняться между визитами. Войди или зарегистрируйся, чтобы прогресс синхронизировался через облако.
+  </div>
+
+  <!-- START SCREEN -->
+  <div id="startScreen">
+    <p class="intro-copy">Тренажёр перед контрольной. Темы собраны в уроки — тренируй раздел, урок целиком, или пройди вообще всё.</p>
+
+    <h2 class="lesson-title">Урок 1</h2>
+    <p class="lesson-sub">местоимения и национальности</p>
+    <div class="mode-list">
+      <div class="mode-row">
+        <button class="mode-card" data-mode="poss">
+          <span class="mc-left">
+            <span class="mc-title">Притяжательные</span>
+            <span class="mc-sub">my / mine, her / hers, their / theirs…</span>
+            <span class="mc-best" id="bestPoss"></span>
+            <span class="mc-passed-row" id="passRow_poss"></span>
+          </span>
+          <span class="mc-count">30</span>
+        </button>
+        <button class="timer-btn" data-mode="poss" title="Тренировка на время: 5 сек на ответ">⏱</button>
+      </div>
+      <div class="mode-row">
+        <button class="mode-card" data-mode="nat">
+          <span class="mc-left">
+            <span class="mc-title">Национальности</span>
+            <span class="mc-sub">страна ⇄ житель, в обе стороны</span>
+            <span class="mc-best" id="bestNat"></span>
+            <span class="mc-passed-row" id="passRow_nat"></span>
+          </span>
+          <span class="mc-count">30</span>
+        </button>
+        <button class="timer-btn" data-mode="nat" title="Тренировка на время: 5 сек на ответ">⏱</button>
+      </div>
+      <div class="mode-row">
+        <button class="mode-card mode-card-combo" data-mode="lesson1">
+          <span class="mc-left">
+            <span class="mc-title">Урок 1 целиком</span>
+            <span class="mc-sub">притяжательные + национальности, вперемешку</span>
+            <span class="mc-best" id="bestLesson1"></span>
+            <span class="mc-passed-row" id="passRow_lesson1"></span>
+          </span>
+          <span class="mc-count">60</span>
+        </button>
+        <button class="timer-btn" data-mode="lesson1" title="Тренировка на время: 5 сек на ответ">⏱</button>
+      </div>
+    </div>
+
+    <h2 class="lesson-title">Урок 2</h2>
+    <p class="lesson-sub">время и порядковые числительные</p>
+    <div class="mode-list">
+      <div class="mode-row">
+        <button class="mode-card" data-mode="time">
+          <span class="mc-left">
+            <span class="mc-title">Время</span>
+            <span class="mc-sub">6:30 → half past six</span>
+            <span class="mc-best" id="bestTime"></span>
+            <span class="mc-passed-row" id="passRow_time"></span>
+          </span>
+          <span class="mc-count">20</span>
+        </button>
+        <button class="timer-btn" data-mode="time" title="Тренировка на время: 5 сек на ответ">⏱</button>
+      </div>
+      <div class="mode-row">
+        <button class="mode-card" data-mode="ord">
+          <span class="mc-left">
+            <span class="mc-title">Порядковые числительные</span>
+            <span class="mc-sub">38 → thirty-eighth, и в обратную сторону</span>
+            <span class="mc-best" id="bestOrd"></span>
+            <span class="mc-passed-row" id="passRow_ord"></span>
+          </span>
+          <span class="mc-count">20</span>
+        </button>
+        <button class="timer-btn" data-mode="ord" title="Тренировка на время: 5 сек на ответ">⏱</button>
+      </div>
+      <div class="mode-row">
+        <button class="mode-card mode-card-combo" data-mode="lesson2">
+          <span class="mc-left">
+            <span class="mc-title">Урок 2 целиком</span>
+            <span class="mc-sub">время + числительные, вперемешку</span>
+            <span class="mc-best" id="bestLesson2"></span>
+            <span class="mc-passed-row" id="passRow_lesson2"></span>
+          </span>
+          <span class="mc-count">40</span>
+        </button>
+        <button class="timer-btn" data-mode="lesson2" title="Тренировка на время: 5 сек на ответ">⏱</button>
+      </div>
+    </div>
+
+    <h2 class="lesson-title">Урок 3</h2>
+    <p class="lesson-sub">сленг и живые слова</p>
+    <div class="mode-list">
+      <div class="mode-row">
+        <button class="mode-card mode-card-combo" id="slangStartBtn">
+          <span class="mc-left">
+            <span class="mc-title">Сленг и живые слова</span>
+            <span class="mc-sub">сначала объяснение, потом проверка — по 5 слов за раз</span>
+            <span class="mc-best" id="bestSlang"></span>
+          </span>
+          <span class="mc-count">50</span>
+        </button>
+      </div>
+    </div>
+
+    <h2 class="lesson-title">Оба урока</h2>
+    <div class="mode-list">
+      <div class="mode-row">
+        <button class="mode-card mode-card-all" data-mode="all">
+          <span class="mc-left">
+            <span class="mc-title">Все темы</span>
+            <span class="mc-sub">абсолютно все вопросы, вперемешку</span>
+            <span class="mc-best" id="bestAll"></span>
+            <span class="mc-passed-row" id="passRow_all"></span>
+          </span>
+          <span class="mc-count">100</span>
+        </button>
+        <button class="timer-btn timer-btn-all" data-mode="all" title="Тренировка на время: 5 сек на ответ">⏱</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLANG LEARN SCREEN -->
+  <div id="slangLearnScreen" class="hidden">
+    <div class="quiz-head">
+      <div class="progress-track"><div class="progress-fill" id="slangProgressFill"></div></div>
+      <div class="progress-label" id="slangProgressLabel">Группа 1 / 10</div>
+    </div>
+    <div class="card">
+      <div class="category-label">СЛЕНГ — ИЗУЧИ ПЕРЕД ПРОВЕРКОЙ</div>
+      <div id="slangWordList" style="display:flex;flex-direction:column;gap:12px;"></div>
+      <div class="card-footer">
+        <button class="next-btn" id="slangToQuizBtn">Проверить себя</button>
+      </div>
+    </div>
+    <div class="quit-row"><button class="quit-link" id="slangQuitBtn">Вернуться к выбору</button></div>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="quizScreen" class="hidden">
+    <div class="quiz-head">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">1 / 30</div>
+      <div class="qtimer hidden" id="qTimerWrap">
+        <div class="qtimer-track"><div class="qtimer-fill" id="qTimerFill"></div></div>
+        <div class="qtimer-num" id="qTimerNum">5</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="category-label" id="categoryLabel">ПРИТЯЖАТЕЛЬНЫЕ</div>
+      <div class="question-text" id="questionText"></div>
+      <div class="options" id="optionsGrid"></div>
+      <div class="card-footer" id="cardFooter"></div>
+    </div>
+    <div class="quit-row"><button class="quit-link" id="quitBtn">Прервать и вернуться к выбору</button></div>
+  </div>
+
+  <!-- COUNTDOWN OVERLAY (timed mode) -->
+  <div id="countdownOverlay" class="countdown-overlay hidden">
+    <div class="countdown-box">
+      <div class="countdown-number" id="countdownNumber">3</div>
+      <div class="countdown-caption">5 секунд на каждый ответ</div>
+    </div>
+  </div>
+
+  <!-- CONFIRM MODAL -->
+  <div id="confirmOverlay" class="modal-overlay hidden">
+    <div class="modal-box">
+      <p class="modal-title">Точно выйти?</p>
+      <p class="modal-text">Это сбросит прогресс текущего прохождения. Уже отвеченные вопросы не сохранятся.</p>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="modalCancel">Остаться</button>
+        <button class="btn-primary" id="modalConfirm">Да, выйти</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIME SETTINGS MODAL -->
+  <div id="timeSettingsOverlay" class="modal-overlay hidden">
+    <div class="modal-box">
+      <p class="modal-title">Формат времени</p>
+      <p class="modal-text">В этом прохождении есть вопросы про время. Выбери, как его показывать.</p>
+      <div class="settings-group">
+        <p class="settings-label">Отображение</p>
+        <div class="segmented" id="displaySegmented">
+          <button type="button" class="seg-btn" data-value="clock">Циферблат</button>
+          <button type="button" class="seg-btn" data-value="digits">Цифрами</button>
+        </div>
+      </div>
+      <div class="settings-group">
+        <p class="settings-label">Формат часов</p>
+        <div class="segmented" id="formatSegmented">
+          <button type="button" class="seg-btn" data-value="24">24-часовой</button>
+          <button type="button" class="seg-btn" data-value="12">12-часовой</button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="timeSettingsCancel">Отмена</button>
+        <button class="btn-primary" id="timeSettingsStart">Начать</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div id="loginOverlay" class="modal-overlay hidden">
+    <div class="modal-box">
+      <p class="modal-title">Вход</p>
+      <p class="modal-text">Войди, чтобы прогресс синхронизировался между устройствами.</p>
+      <form id="loginForm">
+        <div class="auth-field">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" required autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label for="loginPassword">Пароль</label>
+          <input type="password" id="loginPassword" required autocomplete="current-password" minlength="6">
+        </div>
+        <p class="auth-error" id="loginError"></p>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" id="loginCancelBtn">Отмена</button>
+          <button type="submit" class="btn-primary" id="loginSubmitBtn">Войти</button>
+        </div>
+      </form>
+      <p class="modal-text" style="margin:14px 0 0; text-align:center;">
+        Нет аккаунта? <a href="#" id="loginSwitchToRegister" style="color:var(--accent);">Зарегистрироваться</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- REGISTER MODAL -->
+  <div id="registerOverlay" class="modal-overlay hidden">
+    <div class="modal-box">
+      <p class="modal-title">Регистрация</p>
+      <p class="modal-text">Создай аккаунт, чтобы не потерять свой прогресс.</p>
+      <form id="registerForm">
+        <div class="auth-field">
+          <label for="registerEmail">Email</label>
+          <input type="email" id="registerEmail" required autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label for="registerPassword">Пароль</label>
+          <input type="password" id="registerPassword" required autocomplete="new-password" minlength="6">
+        </div>
+        <p class="auth-error" id="registerError"></p>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" id="registerCancelBtn">Отмена</button>
+          <button type="submit" class="btn-primary" id="registerSubmitBtn">Создать аккаунт</button>
+        </div>
+      </form>
+      <p class="modal-text" style="margin:14px 0 0; text-align:center;">
+        Уже есть аккаунт? <a href="#" id="registerSwitchToLogin" style="color:var(--accent);">Войти</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div id="resultScreen" class="hidden">
+    <div class="result-hero">
+      <p class="result-score" id="resultScore">0/0</p>
+      <p class="result-of" id="resultPercent">0% правильных</p>
+      <p class="result-note hidden" id="resultBest">Новый личный рекорд</p>
+    </div>
+    <div class="breakdown" id="breakdownRow"></div>
+    <p class="review-title" id="reviewTitle">Стоит повторить</p>
+    <div class="review-list" id="reviewList"></div>
+    <p class="all-correct hidden" id="allCorrectMsg">Ни одной ошибки. Отлично.</p>
+    <div class="result-actions">
+      <button class="btn-secondary" id="backBtn">Другой раздел</button>
+      <button class="btn-primary" id="retryBtn">Пройти ещё раз</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/src/app.js"></script>
+</body>
+</html>
