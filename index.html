@@ -33,6 +33,11 @@
 
   <!-- START SCREEN -->
   <div id="startScreen">
+    <div class="tabs">
+      <button class="tab active" data-tab="lessons">Уроки</button>
+      <button class="tab" data-tab="vocab">Словник</button>
+    </div>
+    <div id="tabLessons">
     <p class="intro-copy">Тренажёр перед контрольной. Темы собраны в уроки — тренируй раздел, урок целиком, или пройди вообще всё.</p>
 
     <h2 class="lesson-title">Урок 1</h2>
@@ -117,21 +122,6 @@
       </div>
     </div>
 
-    <h2 class="lesson-title">Урок 3</h2>
-    <p class="lesson-sub">сленг и живые слова</p>
-    <div class="mode-list">
-      <div class="mode-row">
-        <button class="mode-card mode-card-combo" id="slangStartBtn">
-          <span class="mc-left">
-            <span class="mc-title">Сленг и живые слова</span>
-            <span class="mc-sub">сначала объяснение, потом проверка — по 5 слов за раз</span>
-            <span class="mc-best" id="bestSlang"></span>
-          </span>
-          <span class="mc-count">50</span>
-        </button>
-      </div>
-    </div>
-
     <h2 class="lesson-title">Оба урока</h2>
     <div class="mode-list">
       <div class="mode-row">
@@ -146,6 +136,47 @@
         </button>
         <button class="timer-btn timer-btn-all" data-mode="all" title="Тренировка на время: 5 сек на ответ">⏱</button>
       </div>
+    </div>
+    </div>
+    <div id="tabVocab" class="hidden">
+
+    <h2 class="lesson-title">Базовые слова 1</h2>
+    <p class="lesson-sub">дом и мебель — 34 слова</p>
+    <div class="mode-list">
+      <div class="mode-row">
+        <button class="mode-card" id="vocabTestBtn">
+          <span class="mc-left">
+            <span class="mc-title">Тест на значение</span>
+            <span class="mc-sub">«Как будет спальня?» — выбери из 4 вариантов</span>
+          </span>
+          <span class="mc-count">34</span>
+        </button>
+      </div>
+      <div class="mode-row">
+        <button class="mode-card" id="vocabTypeBtn">
+          <span class="mc-left">
+            <span class="mc-title">Вписать вручную</span>
+            <span class="mc-sub">пиши слово сам, регистр не важен</span>
+          </span>
+          <span class="mc-count">34</span>
+        </button>
+      </div>
+    </div>
+
+    <h2 class="lesson-title">Сленг</h2>
+    <p class="lesson-sub">сленг и живые слова</p>
+    <div class="mode-list">
+      <div class="mode-row">
+        <button class="mode-card mode-card-combo" id="slangStartBtn">
+          <span class="mc-left">
+            <span class="mc-title">Сленг и живые слова</span>
+            <span class="mc-sub">сначала объяснение, потом проверка — по 5 слов за раз</span>
+            <span class="mc-best" id="bestSlang"></span>
+          </span>
+          <span class="mc-count">50</span>
+        </button>
+      </div>
+    </div>
     </div>
   </div>
 
@@ -182,6 +213,19 @@
       <div class="card-footer" id="cardFooter"></div>
     </div>
     <div class="quit-row"><button class="quit-link" id="quitBtn">Прервать и вернуться к выбору</button></div>
+  </div>
+
+  <!-- VOCAB SCREEN -->
+  <div id="vocabScreen" class="hidden">
+    <div class="card">
+      <div class="progress-track"><div class="progress-fill" id="vProgressFill"></div></div>
+      <div class="progress-label" id="vProgressLabel"></div>
+      <div class="category-label" id="vCategory"></div>
+      <div class="question-text" id="vQuestion"></div>
+      <div id="vBody"></div>
+      <div class="card-footer" id="vFooter"></div>
+    </div>
+    <div class="quit-row"><button class="quit-link" id="vQuitBtn">Вернуться к выбору</button></div>
   </div>
 
   <!-- COUNTDOWN OVERLAY (timed mode) -->
